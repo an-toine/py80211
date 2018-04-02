@@ -2,7 +2,7 @@
 # This file is generated using extract.py using pycparser
 ###########################################################
 # revision:
-#	v4.12.7
+#	mac80211-next-for-davem-2018-03-29
 ###########################################################
 from netlink.capi import *
 from defs import *
@@ -92,6 +92,7 @@ nl80211_policy[ATTR_STA_FLAGS2].min_len = None
 nl80211_policy[ATTR_CONTROL_PORT].type = NLA_FLAG
 nl80211_policy[ATTR_CONTROL_PORT_ETHERTYPE].type = NLA_U16
 nl80211_policy[ATTR_CONTROL_PORT_NO_ENCRYPT].type = NLA_FLAG
+nl80211_policy[ATTR_CONTROL_PORT_OVER_NL80211].type = NLA_FLAG
 nl80211_policy[ATTR_PRIVACY].type = NLA_FLAG
 nl80211_policy[ATTR_CIPHER_SUITE_GROUP].type = NLA_U32
 nl80211_policy[ATTR_WPA_VERSIONS].type = NLA_U32
@@ -217,8 +218,9 @@ nl80211_policy[ATTR_FILS_ERP_RRK].type = NLA_BINARY
 nl80211_policy[ATTR_FILS_ERP_RRK].max_len = 64
 nl80211_policy[ATTR_FILS_CACHE_ID].min_len = 2
 nl80211_policy[ATTR_PMK].type = NLA_BINARY
-nl80211_policy[ATTR_PMK].max_len = 48
+nl80211_policy[ATTR_PMK].max_len = 64
 nl80211_policy[ATTR_SCHED_SCAN_MULTI].type = NLA_FLAG
+nl80211_policy[ATTR_EXTERNAL_AUTH_SUPPORT].type = NLA_FLAG
 # append/override nl80211_policy entries
 nl80211_policy[ATTR_GENERATION].type = NLA_U32
 nl80211_policy[ATTR_MAX_NUM_SCAN_SSIDS].type = NLA_U8
@@ -368,6 +370,13 @@ nl80211_nan_srf_policy[NAN_SRF_BF].type = NLA_BINARY
 nl80211_nan_srf_policy[NAN_SRF_BF].max_len = 0xff
 nl80211_nan_srf_policy[NAN_SRF_BF_IDX].type = NLA_U8
 nl80211_nan_srf_policy[NAN_SRF_MAC_ADDRS].type = NLA_NESTED
+#
+# policy: nl80211_packet_pattern_policy
+#
+nl80211_packet_pattern_policy = nla_policy_array(MAX_NL80211_PKTPAT + 1)
+nl80211_packet_pattern_policy[PKTPAT_MASK].type = NLA_BINARY
+nl80211_packet_pattern_policy[PKTPAT_PATTERN].type = NLA_BINARY
+nl80211_packet_pattern_policy[PKTPAT_OFFSET].type = NLA_U32
 #
 # policy: txq_params_policy
 #
