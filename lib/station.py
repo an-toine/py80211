@@ -145,7 +145,7 @@ class station_list(custom_handler):
 			access = access80211(kind)
 		flags = NLM_F_REQUEST | NLM_F_ACK | NLM_F_DUMP
 		m = access.alloc_genlmsg(nl80211.CMD_GET_STATION, flags)
-		nla_put_u32(m._msg, nl80211.ATTR_IFINDEX, ifidx)
+		nla_put_u32(m, nl80211.ATTR_IFINDEX, ifidx)
 		self._access = access
 		access.send(m, self)
 
